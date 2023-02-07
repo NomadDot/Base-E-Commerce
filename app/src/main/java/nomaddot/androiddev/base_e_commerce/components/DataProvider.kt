@@ -1,23 +1,23 @@
 package nomaddot.androiddev.base_e_commerce.components
 
-import nomaddot.androiddev.base_e_commerce.network.BookingApi
-import nomaddot.androiddev.base_e_commerce.network.RestApi
-import nomaddot.androiddev.base_e_commerce.database.Database
+import nomaddot.androiddev.base_e_commerce.components.network.BookingApi
+import nomaddot.androiddev.base_e_commerce.components.network.RestApi
+import nomaddot.androiddev.base_e_commerce.components.database.Database
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object DataProvider {
-    private lateinit var db: Database
-    private lateinit var api: RestApi
-
-    fun setup() {
-        db = object : Database { }
-        api = RestModule()
-    }
-
-    fun database() = db
-    fun getApi() = api
-}
+//object DataProvider {
+//    private lateinit var db: Database
+//    private lateinit var api: RestApi
+//
+//    fun setup() {
+//        db = object : Database { }
+//        api = RestModule()
+//    }
+//
+//    fun database() = db
+//    fun getApi() = api
+//}
 
 class RestModule() : RestApi {
 

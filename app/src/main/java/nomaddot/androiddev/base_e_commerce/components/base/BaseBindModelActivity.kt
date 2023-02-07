@@ -1,39 +1,28 @@
 package nomaddot.androiddev.base_e_commerce.components.base
 
 import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-abstract class BaseBindModelActivity<T : ViewDataBinding, M : BaseViewModel<*>> : BaseActivity(),
+abstract class BaseBindModelActivity<T : ViewDataBinding, M : BaseViewModel<*>> : AppCompatActivity(),
     BaseNavigator {
 
-    private lateinit var binding: T
-    private lateinit var viewModel: M
+    lateinit var binding: T
+    lateinit var viewModel: M
     private fun performDataBinding() {
-        binding = DataBindingUtil.setContentView(this, getLayoutResId(), LifecycleComponent(lifecycle))
-
+        binding = DataBindingUtil.setContentView(this, getLayoutResId())
+        viewModel = initViewModel()
         binding.lifecycleOwner = this
-        binding.setVariable(BR.viewModel, viewModel)
+        //binding.setVariable(BR.viewModel, viewModel)
         binding.executePendingBindings()
     }
-    open fun initViewModel() {
-    }
-
-    open fun onResumeActivity() { }
-
-    open fun onStopActivity() { }
-
-    open fun onDestroyActivity() { }
-
+    abstract fun initViewModel(): M
     abstract fun setupActivity(): Activity
 
     abstract fun getFragments(): List<Fragment>
 
     abstract fun getLayoutResId(): Int
-
-    override fun openTokenExpiredAlert() {
-        TODO("Not yet implemented")
-    }
 }

@@ -1,4 +1,4 @@
-package nomaddot.androiddev.base_e_commerce.network
+package nomaddot.androiddev.base_e_commerce.components.network
 
 interface RestApi {
     fun bookingApi(): BookingApi
